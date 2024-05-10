@@ -179,12 +179,6 @@ static bool ask_to_wipe_data(Device* device) {
   return (chosen_item == 1);
 }
 
-bool ask_to_ab_reboot(Device* device) {
-  device->GetUI()->SetProgressType(RecoveryUI::EMPTY);
-  return yes_no(device, "To install additional packages, you need to reboot recovery first",
-                "Do you want to reboot to recovery now?");
-}
-
 static InstallResult prompt_and_wipe_data(Device* device) {
   // Use a single string and let ScreenRecoveryUI handles the wrapping.
   std::vector<std::string> wipe_data_menu_headers{
@@ -849,7 +843,6 @@ Device::BuiltinAction start_recovery(Device* device, const std::vector<std::stri
     if (!sideload_auto_reboot) {
       ui->ShowText(true);
     }
-    ui->SetSideloadAutoReboot(sideload_auto_reboot);
     status = ApplyFromAdb(device, false /* rescue_mode */, &next_action);
     ui->Print("\nInstall from ADB complete (status: %d).\n", status);
     if (sideload_auto_reboot) {

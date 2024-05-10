@@ -194,14 +194,6 @@ class RecoveryUI {
 
   virtual bool IsUsbConnected();
 
-  bool IsSideloadAutoReboot() const {
-    return sideload_auto_reboot_;
-  }
-
-  void SetSideloadAutoReboot(bool sar) {
-    sideload_auto_reboot_ = sar;
-  }
-
  protected:
   void EnqueueKey(int key_code);
 
@@ -217,8 +209,6 @@ class RecoveryUI {
   bool touch_screen_allowed_;
 
   bool fastbootd_logo_enabled_;
-
-  bool sideload_auto_reboot_;
 
  private:
   enum class ScreensaverState {
